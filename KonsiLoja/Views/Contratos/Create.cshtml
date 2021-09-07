@@ -1,0 +1,120 @@
+﻿@model KonsiLoja.Models.Contrato
+
+
+
+
+<div class="Centro">
+    
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div style="text-align:center;"> <h2> Cadastro de clientes </h2></div>
+
+        <div class="form-group">
+            @Html.Label("Nome", "Preencha com o nome do Cliente", new { @class = "col-form-label" })
+            @Html.DropDownListFor(model => model.ClientesId, (SelectList)ViewBag.ClientesId, string.Empty, new { @class = "form-control", @placeholder = "Selecione o nome do cliente", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ClientesId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("CPF", "Preencha com o CPF do Cliente ", new { @class = "col-form-label" })
+            @Html.DropDownListFor(model => model.ClientesId, (SelectList)ViewBag.CPF, string.Empty, new { @class = "form-control", @placeholder = "Selecione o CPF do Cliente", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ClientesId)
+            </div>
+        </div>
+
+
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.NumeroContrato, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.NumeroContrato, new { @class = "form-control", @placeholder = "Digite aqui o número do contrato", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.NumeroContrato)
+            </div>
+        </div>
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.ValorContrato, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.ValorContrato, new { @class = "form-control", @placeholder = "Digite aqui o valor do contrato", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ValorContrato)
+            </div>
+        </div>
+
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.SaldoDevedor, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.SaldoDevedor, new { @class = "form-control", @placeholder = "Digite aqui o saldo devedor", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.SaldoDevedor)
+            </div>
+        </div>
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.ParcelasTotais, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.ParcelasTotais, new { @class = "form-control", @placeholder = "Digite aqui o valor total das parcelas", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ParcelasTotais)
+            </div>
+        </div>
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.ParcelasPagas, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.ParcelasPagas, new { @class = "form-control", @placeholder = "Digite aqui o valor de parcelas pagas", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ParcelasPagas)
+            </div>
+        </div>
+
+        <div class="form-group  ">
+            @Html.LabelFor(model => model.ValorParcela, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.ValorParcela, new { @class = "form-control", @placeholder = "Digite aqui o valor da parcela", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.ValorParcela)
+            </div>
+        </div>
+
+
+        @*<div class="form-group  ">
+            @Html.LabelFor(model => model.VendedoresId, new { @class = "col-form-label" })
+            @Html.TextBoxFor(model => model.VendedoresId, new { @class = "form-control", @placeholder = "Digite seu nome", @style = "width:400px;" })
+            <div class="alert-danger">
+                @Html.ValidationMessageFor(model => model.VendedoresId)
+            </div>
+        </div>*@
+
+
+        <div class="Centro">
+            <input type="submit" value="Cadastrar o cliente" class="btn btn-dark" />
+        </div>
+    </form>
+</div>
+
+<style>
+
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+
+    body {
+        background-color: #FFFFFF;
+        color: #535353;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .Centro{
+        display:flex;
+        justify-content:center;
+    }
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

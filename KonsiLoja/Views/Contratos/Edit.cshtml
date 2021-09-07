@@ -1,0 +1,69 @@
+﻿@model KonsiLoja.Models.Contrato
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Contrato</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ContratoId" />
+            <div class="form-group">
+                <label asp-for="NumeroContrato" class="control-label"></label>
+                <input asp-for="NumeroContrato" class="form-control" />
+                <span asp-validation-for="NumeroContrato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorContrato" class="control-label"></label>
+                <input asp-for="ValorContrato" class="form-control" />
+                <span asp-validation-for="ValorContrato" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SaldoDevedor" class="control-label"></label>
+                <input asp-for="SaldoDevedor" class="form-control" />
+                <span asp-validation-for="SaldoDevedor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParcelasTotais" class="control-label"></label>
+                <input asp-for="ParcelasTotais" class="form-control" />
+                <span asp-validation-for="ParcelasTotais" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParcelasPagas" class="control-label"></label>
+                <input asp-for="ParcelasPagas" class="form-control" />
+                <span asp-validation-for="ParcelasPagas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValorParcela" class="control-label"></label>
+                <input asp-for="ValorParcela" class="form-control" />
+                <span asp-validation-for="ValorParcela" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VendedoresId" class="control-label"></label>
+                <select asp-for="VendedoresId" class="form-control" asp-items="ViewBag.VendedoresId"></select>
+                <span asp-validation-for="VendedoresId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientesId" class="control-label"></label>
+                <select asp-for="ClientesId" class="form-control" asp-items="ViewBag.ClientesId"></select>
+                <span asp-validation-for="ClientesId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

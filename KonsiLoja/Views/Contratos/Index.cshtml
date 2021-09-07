@@ -1,0 +1,115 @@
+﻿@model IEnumerable<KonsiLoja.Models.Contrato>
+
+@{
+    
+}
+
+
+
+
+
+<div class="top"> <h1> Lista de Contratos</h1></div>
+
+
+<div class="busca panel-body">
+    
+    @using (Html.BeginForm("Index", "Contratos"))
+    {
+    <form class="navbar-form navbar-right" role="search">
+
+        <div>
+            <div class="col-sm-2" style="display:inline-block">
+                <label> Buscar por saldo devedor : </label>
+                @Html.TextBox("devedor", null, new { @class = "form-control" })
+            </div>
+
+            <div class="col-sm-2" style="display:inline-block">
+                <label> Buscar por número de parcelas pagas : </label>
+                @Html.TextBox("parcelasPagas", null, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-dark">Pesquisar</button>
+        </div>
+    </form>
+    }
+
+</div>
+
+
+<table class="table table-b">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaldoDevedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParcelasTotais)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParcelasPagas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorParcela)
+            </th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Clientes.CPF)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroContrato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorContrato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaldoDevedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParcelasTotais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParcelasPagas)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clientes.CPF)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    
+</table>
+
+<style>
+    .busca{
+       margin: 0 auto;
+    }
+
+    .top{
+        display:flex;
+        justify-content:center;
+        padding-bottom:40px;
+    }
+</style>
