@@ -18,6 +18,12 @@
     <form class="navbar-form navbar-right" role="search">
 
         <div>
+
+
+            <div class="col-sm-2" style="display:inline-block">
+                <label> Buscar por saldo devedor : </label>
+                @Html.TextBox("CPF", null, new { @class = "form-control" })
+            </div>
             <div class="col-sm-2" style="display:inline-block">
                 <label> Buscar por saldo devedor : </label>
                 @Html.TextBox("devedor", null, new { @class = "form-control" })
@@ -56,7 +62,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ValorParcela)
             </th>
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Clientes.CPF)
             </th>
@@ -68,34 +73,35 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumeroContrato)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValorContrato)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SaldoDevedor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ParcelasTotais)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ParcelasPagas)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SaldoDevedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParcelasTotais)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParcelasPagas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValorParcela)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clientes.CPF)
+            </td>
 
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Clientes.CPF)
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ContratoId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ContratoId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
-                </td>
-            </tr>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ContratoId">Editar contrato</a> |
+                <a asp-action="Details" asp-route-id="@item.ContratoId">Detalhes Do Contrato</a> |
+                <a asp-action="Delete" asp-route-id="@item.ContratoId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 

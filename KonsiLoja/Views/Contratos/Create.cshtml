@@ -4,20 +4,20 @@
 
 
 <div class="Centro">
-    
+
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
         <div style="text-align:center;"> <h2> Cadastro de clientes </h2></div>
 
-        <div class="form-group">
-            @Html.Label("Nome", "Preencha com o nome do Cliente", new { @class = "col-form-label" })
-            @Html.DropDownListFor(model => model.ClientesId, (SelectList)ViewBag.ClientesId, string.Empty, new { @class = "form-control", @placeholder = "Selecione o nome do cliente", @style = "width:400px;" })
-            <div class="alert-danger">
-                @Html.ValidationMessageFor(model => model.ClientesId)
-            </div>
-        </div>
+        @*<div class="form-group">
+                @Html.Label("Nome", "Preencha com o nome do Cliente", new { @class = "col-form-label" })
+                @Html.DropDownListFor(model => model.ClientesId, (SelectList)ViewBag.ClientesId, string.Empty, new { @class = "form-control", @placeholder = "Selecione o nome do cliente", @style = "width:400px;" })
+                <div class="alert-danger">
+                    @Html.ValidationMessageFor(model => model.ClientesId)
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.Label("CPF", "Preencha com o CPF do Cliente ", new { @class = "col-form-label" })
@@ -80,12 +80,12 @@
 
 
         @*<div class="form-group  ">
-            @Html.LabelFor(model => model.VendedoresId, new { @class = "col-form-label" })
-            @Html.TextBoxFor(model => model.VendedoresId, new { @class = "form-control", @placeholder = "Digite seu nome", @style = "width:400px;" })
-            <div class="alert-danger">
-                @Html.ValidationMessageFor(model => model.VendedoresId)
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.VendedoresId, new { @class = "col-form-label" })
+                @Html.TextBoxFor(model => model.VendedoresId, new { @class = "form-control", @placeholder = "Digite seu nome", @style = "width:400px;" })
+                <div class="alert-danger">
+                    @Html.ValidationMessageFor(model => model.VendedoresId)
+                </div>
+            </div>*@
 
 
         <div class="Centro">
@@ -96,24 +96,61 @@
 
 <style>
 
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
 
     body {
         background-color: #FFFFFF;
         color: #535353;
-        font-family:Arial, Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
-    .Centro{
-        display:flex;
-        justify-content:center;
+    .Centro {
+        display: flex;
+        justify-content: center;
     }
 </style>
+
+
+
+
+
+@if (ViewBag.Alerta == true)
+{
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Este cliente já possui um vendedor.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

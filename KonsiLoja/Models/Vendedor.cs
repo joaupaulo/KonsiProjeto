@@ -11,12 +11,13 @@ namespace KonsiLoja.Models
     {
         public int VendedorId { get; set; }
         [Required]
+        [RegularExpression("(\\d{0,5})", ErrorMessage = "O cdigo do vendedor precisa de 5 digitos")]
         public int Codigo { get; set; }
         [DisplayName("Vendedor")]
         public string Nome { get; set; }
         public List<Contrato> Contratos { get; set; }
         public List<Cliente> Clientes { get; set; }
-        public List<RelatorioGeral> RelatorioGeral { get; set; }
+      
     }
 }
   

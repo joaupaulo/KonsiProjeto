@@ -26,6 +26,8 @@ namespace KonsiLoja.Controllers
             return View(await konsiContexto.ToListAsync());
         }
 
+
+
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {

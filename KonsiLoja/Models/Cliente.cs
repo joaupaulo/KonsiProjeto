@@ -14,8 +14,8 @@ namespace KonsiLoja.Models
         public int CPF { get; set; }
         public int ? VendedoresId { get; set; }
         public Vendedor Vendedores { get; set; }
-        public Contrato Contrato { get; set; }
-        public List<RelatorioGeral> RelatorioGeral { get; set; }
+        public Contrato Contrato { get; set; } 
+      
          
       
     }

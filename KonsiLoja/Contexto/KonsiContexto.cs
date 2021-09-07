@@ -20,7 +20,7 @@ namespace KonsiLoja.Contexto
             public DbSet<Cliente> Clientes { get; set; }
             public DbSet<Contrato> Contratos { get; set; }
             public DbSet<Vendedor> Vendedors { get; set; }
-            public DbSet<KonsiLoja.Models.RelatorioGeral> RelatorioGeral { get; set; }
+           
          
 
         

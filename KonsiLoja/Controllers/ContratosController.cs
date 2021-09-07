@@ -20,11 +20,11 @@ namespace KonsiLoja.Controllers
         }
 
         // GET: Contratos
-        public  IActionResult Index( decimal ? devedor , decimal ? parcelasPagas)
+        public  IActionResult Index( decimal ? devedor , decimal ? parcelasPagas, int ? CPF)
         {
-            var ListsPesquisa = _context.Contratos.Where(x => x.SaldoDevedor > devedor || x.ParcelasPagas < parcelasPagas && x.Vendedores.Nome != null).ToList();
+            var ListaPesquisa = _context.Contratos.Where(  x => x.NumeroContrato > 0 || x.ParcelasPagas < 0 || x.SaldoDevedor > 0 || x.Clientes.CPF == CPF ).ToList();
 
-            return View(ListsPesquisa);
+            return View(ListaPesquisa); ;
         }
 
         // GET: Contratos/Details/5
@@ -61,8 +61,26 @@ namespace KonsiLoja.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ContratoId,NumeroContrato,ValorContrato,SaldoDevedor,ParcelasTotais,ParcelasPagas,ValorParcela,VendedoresId,ClientesId")] Contrato contrato)
+        public async Task<IActionResult> Create([Bind("ContratoId,NumeroContrato,ValorContrato,SaldoDevedor,ParcelasTotais,ParcelasPagas,ValorParcela,VendedoresId,ClientesId,CPF,ClienteId.CPF")] Contrato contrato)
         {
+
+
+            var numero = _context.Clientes.ToList();
+
+            foreach( var item in numero)
+            {
+
+                var resultado = _context.Clientes.Where(x => x.ClienteId == item.ClienteId).Count();
+                
+                if(resultado > 0)
+                {
+                    ViewBag.Alerta = "Conteudo";
+                    return View();
+                }
+
+            }
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(contrato);
@@ -88,8 +106,8 @@ namespace KonsiLoja.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClientesId"] = new SelectList(_context.Clientes, "ClienteId", "ClienteId", contrato.ClientesId);
-            ViewData["VendedoresId"] = new SelectList(_context.Vendedors, "VendedorId", "VendedorId", contrato.VendedoresId);
+            ViewData["ClientesId"] = new SelectList(_context.Clientes, "ClienteId", "CPF", contrato.ClientesId);
+            ViewData["VendedoresId"] = new SelectList(_context.Vendedors, "VendedorId", "Nome", contrato.VendedoresId);
             return View(contrato);
         }
 
@@ -104,6 +122,24 @@ namespace KonsiLoja.Controllers
             {
                 return NotFound();
             }
+
+
+
+            var numero = _context.Clientes.ToList();
+
+            foreach (var item in numero)
+            {
+
+                var resultado = _context.Clientes.Where(x => x.ClienteId == item.ClienteId).Count();
+
+                if (resultado > 0)
+                {
+                    ViewBag.Alerta = "Conteudo";
+                    return View();
+                }
+
+            }
+
 
             if (ModelState.IsValid)
             {
